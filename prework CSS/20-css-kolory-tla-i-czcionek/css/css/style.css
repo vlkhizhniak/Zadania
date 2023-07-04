@@ -1,0 +1,37 @@
+body{
+    background-color: whitesmoke;
+}
+h1{
+    background-color: aqua;
+    color: black;
+}
+h1+p{
+    background-color: yellowgreen;
+    color: chocolate;
+}
+h2{
+    background-color: crimson;
+    color: white;
+}
+h2+p{
+    background-color: yellow;
+    color: blue;
+}
+ol{
+    background-color: aliceblue;
+}
+#li1{
+    color: bisque;
+}
+#li2{
+    color: cadetblue;
+}
+#li3{
+    color: cyan;
+}
+#li4{
+    color: blanchedalmond;
+}
+#li5{
+    color: indigo;
+}
