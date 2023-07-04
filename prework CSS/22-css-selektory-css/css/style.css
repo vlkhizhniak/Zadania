@@ -1,0 +1,9 @@
+p{
+    color: orange;
+}
+.back-color{
+    background-color: whitesmoke;
+}
+h1 +h3{
+    color: brown;
+}
