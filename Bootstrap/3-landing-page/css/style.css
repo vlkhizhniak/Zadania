@@ -1,0 +1,18 @@
+section, footer{
+    padding: 60px 0;
+}
+.bg-img{
+    background-position: center;
+    background-size: cover;
+}
+@media (max-width: 768px){
+    .ShowCase-img{
+        height: 300px;
+    }
+}
+.team-item{
+    max-width: 200px;
+}
+.call-to-action{
+    background-image: url(../img/slider-1.jpg);
+}
