@@ -43,7 +43,11 @@ function saveData(pathToFiles, folder, overwrite) {
                             for (let i of parsedData) {
                                 fs.writeFile(path.join(__dirname, folder, `${i['id']} ${i['name']}.txt`),
                                     `Name: ${i['name'].split(' ')[0]} \nSurname: ${i['name'].split(' ')[1]}\nStreet: ${i['address']['street']} \nZip Code: ${i['address']['zipcode']}\nCity: ${i['address']['city']} \nPhone: ${i['phone']}`,
-                                    function (err) { console.log(err) });
+                                    function (err) { 
+                                        if (err){
+                                            console.log(err)
+                                        };
+                                     });
                             }
                         }
                         console.log('Files updated successfully')
