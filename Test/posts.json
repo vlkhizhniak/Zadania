@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "63bfb0e000bf08070bf491ca"
+  },
+  "title": "Pierwszy post",
+  "content": "Treść pierwszego posta",
+  "author": "Adam",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1641081600000"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672654405047"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63bfb17000bf08070bf491cb"
+  },
+  "title": "Drugi post",
+  "content": "Treść drugiego posta",
+  "author": "Adam",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1641168000000"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1641168000000"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63bfb18500bf08070bf491cc"
+  },
+  "title": "Trzeci post",
+  "content": "Treść trzeciego posta",
+  "author": "Tomek",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1641254400000"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1641081600000"
+    }
+  }
+}]
