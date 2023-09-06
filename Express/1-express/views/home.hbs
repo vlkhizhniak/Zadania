@@ -1,15 +1,29 @@
 <div class="container">
-    <h2>Users List</h2>
-    {{#each user}}
-    <div class="card mb-3">
-        <div class="card-body">
-            <h2 class="card-title">{{name}} {{username}}</h2>
-            <p class="card-text">Street: {{address.street}}</p>
-            <p class="card-text">Suite: {{address.suite}}</p>
-            <p class="card-text">City: {{address.city}}</p>
-            <p class="card-text">ZipCode: {{address.zipcode}}</p>
-            <a href="{{website}}">Website: {{website}}</a>
-        </div>
-    </div>
-    {{/each}}
+    <h1>Users Information</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Street</th>
+                <th>Suite</th>
+                <th>City</th>
+                <th>Zipcode</th>
+                <th>Website</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each user}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{username}}</td>
+                <td>{{address.street}}</td>
+                <td>{{address.suite}}</td>
+                <td>{{address.city}}</td>
+                <td>{{address.zipcode}}</td>
+                <td>{{website}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
