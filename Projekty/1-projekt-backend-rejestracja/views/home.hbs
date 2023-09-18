@@ -22,24 +22,16 @@
         </select>
     </div>
     <div class="ms-4">
+        {{#if nofield}}
+        <div class="bg-dark-subtle">
+            <p class="text-danger">Prosze wypełnić wszystkie pola</p>
+        </div>
+        {{/if}}
+    </div>
+    <div class="ms-4">
         <button class="btn btn-primary mb-3" type="submit">Zapisz na szkolenie</button>
     </div>
 </form>
-{{#if noname}}
-<div class="bg-dark-subtle">
-    <p class="text-danger">Wpisz Imie i Nazwisko</p>
-</div>
-{{/if}}
-{{#if noevent}}
-<div class="bg-dark-subtle">
-    <p class="text-danger">Wybierz szkolenie</p>
-</div>
-{{/if}}
-{{#if nocity}}
-<div class="bg-dark-subtle">
-    <p class="text-danger">Wybierz miasto</p>
-</div>
-{{/if}}
 {{#if confirm}}
 <div class="bg-dark-subtle">
     <h3 class="bg-dark-subtle text-primary">{{message}}</h3>
