@@ -1,0 +1,26 @@
+<form class="ms-1 row g-3" method="post" action="/action/edit/{{_id}}">
+    <div class="col-md-6 mt-4">
+        <label for="date">Wybierz datę wydarzenia</label>
+        <input type="date" class="form-control" id="date" name="date" value="{{date}}">
+    </div>
+    <div class="col-md-6 mt-5">
+        <select class="form-select" aria-label="Default select example" name="kind">
+            <option value="{{kind}}" selected>{{kind}}</option>
+            <option value="Telefon">Telefon</option>
+            <option value="Spotkanie">Spotkanie</option>
+            <option value="Inne">Inne</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <div class="form-floating">
+            <textarea class="form-control" id="description" name="description"
+                style="height: 100px">{{description}}</textarea>
+            <label for="floatingTextarea2">Opis wydarzenia</label>
+        </div>
+    </div>
+    <div class="col-12">
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

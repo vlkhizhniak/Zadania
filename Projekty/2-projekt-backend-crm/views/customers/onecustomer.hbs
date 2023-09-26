@@ -1,0 +1,42 @@
+<div class="card">
+    <h5 class="card-header">{{onecustomer.name}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">NIP: {{onecustomer.nip}}</h5>
+        <h5 class="card-title">Dane adresowe</h5>
+        <p class="card-text">Ulica: {{onecustomer.address.street}}</p>
+        <p class="card-text">Miasto: {{onecustomer.address.city}}</p>
+        <p class="card-text">Państwo: {{onecustomer.address.country}}</p>
+        <p class="card-text">Województwo: {{onecustomer.address.region}}</p>
+        <p class="card-text">Kod pocztowy: {{onecustomer.address.zip}}</p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="/action/{{onecustomer._id}}" class="btn btn-success">Dodaj akcje</a>
+            <a href="/customer/edit/{{onecustomer._id}}" class="btn btn-primary">Edytuj</a>
+        </div>
+
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Data Kontaktu</th>
+            <th scope="col">Rodzaj akcji</th>
+            <th scope="col">Opis akcji</th>
+            <th scope="col">Usuń/Edytuj</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each actionlist}}
+        <tr>
+            <td>{{date}}</td>
+            <td>{{kind}}</td>
+            <td>{{description}}</td>
+            <td style="width: 15%"> 
+                <div class="btn-group">
+                    <a href="/action/delete/{{_id}}" class="btn btn-danger">Usuń</a>
+                    <a href="/action/edit/{{_id}}" class="btn btn-primary ">Edytuj</a>
+                </div>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

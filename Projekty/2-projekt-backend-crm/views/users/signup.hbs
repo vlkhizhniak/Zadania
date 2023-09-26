@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>SignUp</h2>
+
+    {{#if error}}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    {{/if}}
+
+
+    <form action="/user/signup" method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">User email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">User password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button class="btn btn-primary">Signup</button>
+    </form>
+</div>
