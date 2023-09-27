@@ -15,42 +15,51 @@ module.exports = {
     add: (req, res) => {
         // console.log(req.body)
         const newcustomer = new Customer(req.body);
-        newcustomer.save().then(()=>{
+        newcustomer.save().then(() => {
             res.redirect('/customer')
-        }).catch((err)=>{
+        }).catch((err) => {
             res.send(err)
         })
     },
-    delete: (req, res) => {
-        Customer.findByIdAndDelete(req.params.id)
-            .catch((err) => {
-                res.send(err);
-            });
-        res.redirect('/customer')
+    delete: async (req, res) => {
+        try {
+            const onecustomer = await Customer.findById(req.params.id).lean();
+
+            for (const element of onecustomer.actions) {
+                await Action.findByIdAndDelete(element);
+            }
+
+            await Customer.findByIdAndDelete(req.params.id);
+
+            res.redirect('/customer');
+        } catch (err) {
+            res.send(err);
+        }
     },
+
     single: (req, res) => {
         Customer.findById(req.params.id).lean()
             .then((onecustomer) => {
-                Action.find({id: onecustomer._id}).lean()
+                Action.find({ id: onecustomer._id }).lean()
                     .then((actionlist) => {
-                        res.render('customers/onecustomer', {onecustomer: onecustomer, actionlist: actionlist})
+                        res.render('customers/onecustomer', { onecustomer: onecustomer, actionlist: actionlist })
                     })
             });
     },
-    edit: (req, res) => {
-        Customer.findById(req.params.id)
-            .then((onecustomer) => {
-                // console.log(onecustomer)
-                res.render('customers/editcustomer', onecustomer)
-            })
-    },
-    update: (req, res) => {
-        Customer.findByIdAndUpdate(req.params.id, req.body)
-            .then((onecustomer) => {
-                res.redirect("/customer/" + onecustomer._id)
-            })
-            .catch((err) => {
-                res.send(err);
-            });
-    }
+        edit: (req, res) => {
+            Customer.findById(req.params.id)
+                .then((onecustomer) => {
+                    // console.log(onecustomer)
+                    res.render('customers/editcustomer', onecustomer)
+                })
+        },
+            update: (req, res) => {
+                Customer.findByIdAndUpdate(req.params.id, req.body)
+                    .then((onecustomer) => {
+                        res.redirect("/customer/" + onecustomer._id)
+                    })
+                    .catch((err) => {
+                        res.send(err);
+                    });
+            }
 }
