@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const customercontroller = require('../controllers/customercontroller');
+const customercontroller = require('../controllers/customerСontroller');
 
 router.get('/', customercontroller.index);
 router.get('/add', (req, res)=>{

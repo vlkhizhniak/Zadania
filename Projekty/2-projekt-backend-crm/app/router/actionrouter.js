@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const actioncontroller = require('../controllers/actioncontroller')
+const actioncontroller = require('../controllers/actionСontroller')
 
 
 router.get('/:id', actioncontroller.index);

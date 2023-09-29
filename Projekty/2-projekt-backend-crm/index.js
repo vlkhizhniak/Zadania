@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
 
-const actionrouter = require('./app/router/actionrouter');
-const customerrouter = require('./app/router/customerrouter');
-const userrouter = require('./app/router/userrouter');
+const actionrouter = require('./app/router/actionRouter');
+const customerrouter = require('./app/router/customerRouter');
+const userrouter = require('./app/router/userRouter');
 const authmiddleware = require('./app/middleware/auth')
 
 app.get('/', (req, res) => {
