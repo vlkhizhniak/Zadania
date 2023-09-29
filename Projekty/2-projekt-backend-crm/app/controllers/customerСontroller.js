@@ -54,7 +54,7 @@ module.exports = {
     single: (req, res) => {
         Customer.findById(req.params.id).lean()
             .then((onecustomer) => {
-                Action.find({ id: onecustomer._id }).lean()
+                Action.find({ customers: onecustomer._id }).lean()
                     .then((actionlist) => {
                         res.render('customers/onecustomer', { onecustomer: onecustomer, actionlist: actionlist })
                     })

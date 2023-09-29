@@ -1,7 +1,12 @@
-<p class="lead ms-3 fw-bold">Klient: {{name}}</p>
-<p class="lead ms-3 fw-bold">NIP: {{nip}}</p>
+<p class="lead ms-3 fw-bold">Klient: {{onecustomer.name}}</p>
+<p class="lead ms-3 fw-bold">NIP: {{onecustomer.nip}}</p>
 
-<form class="ms-1 row g-3" method="post" action="/action/add/{{_id}}">
+{{#if validError}}
+<div class="alert alert-danger">
+    All fields are required
+</div>
+{{/if}}
+<form class="ms-1 row g-3" method="post" action="/action/add/{{onecustomer._id}}">
     <div class="col-md-6 mt-4">
         <label for="date">Wybierz datę wydarzenia</label>
         <input type="date" class="form-control" id="date" name="date">
@@ -16,8 +21,7 @@
     </div>
     <div class="col-12">
         <div class="form-floating">
-            <textarea class="form-control" id="description" name="description"
-                style="height: 100px"></textarea>
+            <textarea class="form-control" id="description" name="description" style="height: 100px"></textarea>
             <label for="floatingTextarea2">Opis wydarzenia</label>
         </div>
     </div>
