@@ -6,6 +6,11 @@
   <div class="col-md-6">
     <label for="nip" class="form-label">NIP</label>
     <input type="text" class="form-control" id="nip" name="nip">
+    {{#if nipError}}
+    <div class="text-danger">
+      Please enter a valid NIP
+    </div>
+    {{/if}}
   </div>
   <div class="col-12">
     <label for="street" class="form-label">Ulica*</label>
@@ -26,9 +31,18 @@
   <div class="col-md-2">
     <label for="zip" class="form-label">Kod pocztowy*</label>
     <input type="text" class="form-control" id="zip" name="address.zip">
+    {{#if zipError}}
+    <div class="text-danger">
+      Please enter a valid zipcode
+    </div>
+    {{/if}}
   </div>
   <div class="col-12">
-        <p class="text-secondary-emphasis">Pola z gwazdką są obowiązkowe*</p>
+    {{#if requiredError}}
+    <p class="text-danger fw-medium">Pola z gwazdką są obowiązkowe*</p>
+    {{else}}
+    <p class="text-secondary-emphasis">Pola z gwazdką są obowiązkowe*</p>
+    {{/if}}
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Submit</button>
