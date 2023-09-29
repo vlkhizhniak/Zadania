@@ -16,6 +16,26 @@ module.exports = {
                         message: "User already exist",
                     });
                 }
+                else if (err.name === 'ValidationError') {
+                        for (const validationError of Object.values(err.errors)) {
+                            if (validationError.path === 'email') {
+                                res.render("users/signup", {
+                                    error: true,
+                                    message: "Please fill a valid email address",
+                                });
+                                return;
+                            } else if(validationError.path ==='password'){
+                                res.render("users/signup", {
+                                    passwordError: true
+                                });
+                                return;
+                            }
+                            else{
+                                console.log(err);
+                                return;
+                            }
+                        }
+                    }
             });
     },
     login: (req, res) => {

@@ -2,9 +2,9 @@
     <h2>SignUp</h2>
 
     {{#if error}}
-        <div class="alert alert-danger" role="alert">
-            {{message}}
-        </div>
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
     {{/if}}
 
 
@@ -17,6 +17,17 @@
             <label for="password" class="form-label">User password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
+        {{#if passwordError}}
+        <div class="fw-medium text-danger">
+            Passwords must be at least 10 characters in length and contain:
+            <ul>
+                <li class="text-danger">1 lower case letter</li>
+                <li class="text-danger">1 upper case letter</li>
+                <li class="text-danger">1 numeric character</li>
+                <li class="text-danger">1 special character</li>
+            </ul>
+        </div>
+        {{/if}}
         <button class="btn btn-primary">Signup</button>
     </form>
 </div>
