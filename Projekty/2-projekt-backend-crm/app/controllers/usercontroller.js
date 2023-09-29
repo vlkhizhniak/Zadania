@@ -63,7 +63,7 @@ module.exports = {
                     if (logged) {
                         const token = user.generateAuthToken(user);
                         res.cookie("AuthToken", token);
-                        res.redirect("/customer");
+                        res.redirect("/customer?page=1");
                     } else {
                         res.render("users/login", {
                             error: true,

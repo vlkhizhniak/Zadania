@@ -30,7 +30,7 @@ module.exports = {
                 if (invalid) {
                     res.redirect('/action/' + req.params.id + '?invalid=true')
                 } else {
-                    res.redirect('/customer/' + req.params.id)
+                    res.redirect('/customer/' + req.params.id + '?page=1')
                 }
             })
 
@@ -50,7 +50,7 @@ module.exports = {
     update: (req, res) => {
         Action.findByIdAndUpdate(req.params.id, req.body)
             .then((oneaction) => {
-                res.redirect('/customer/' + oneaction.id)
+                res.redirect('/customer/' + oneaction.customers + '?page=1')
             });
     }
 }

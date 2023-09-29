@@ -30,7 +30,7 @@
             <td>{{date}}</td>
             <td>{{kind}}</td>
             <td>{{description}}</td>
-            <td style="width: 15%"> 
+            <td style="width: 15%">
                 <div class="btn-group">
                     <a href="/action/delete/{{_id}}" class="btn btn-danger">Usuń</a>
                     <a href="/action/edit/{{_id}}" class="btn btn-primary ">Edytuj</a>
@@ -40,3 +40,13 @@
         {{/each}}
     </tbody>
 </table>
+{{#equal prevPage 0}}
+<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary disabled ms-2">Poprzednia strona</a>
+{{else}}
+<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary ms-2">Poprzednia strona</a>
+{{/equal}}
+{{#equal currentPage totalPages}}
+<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
+{{else}}
+<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
+{{/equal}}

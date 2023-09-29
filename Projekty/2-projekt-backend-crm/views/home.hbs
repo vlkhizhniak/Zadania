@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Lista Klientów</h2> 
+    <h2>Lista Klientów</h2>
     <a href="/customer/add" class="btn btn-success mb-3">Dodaj Klienta</a>
 
     {{#each customerlist}}
@@ -7,20 +7,30 @@
         <div class="card-body">
             <h2 class="card-title">Nazwa :{{name}}</h2>
             <p class="card-text">NIP: {{nip}}</p>
-            <a href="/customer/{{_id}}" class="btn btn-primary">Więcej</a>
+            <a href="/customer/{{_id}}?page=1" class="btn btn-primary">Więcej</a>
             <a href="/customer/delete/{{_id}}" class="btn btn-danger btn-bottom-right">Usuń</a>
         </div>
     </div>
     {{/each}}
+    {{#equal prevPage 0}}
+    <a href="/customer?page={{prevPage}}" class="btn btn-primary disabled">Poprzednia strona</a>
+    {{else}}
+    <a href="/customer?page={{prevPage}}" class="btn btn-primary">Poprzednia strona</a>
+    {{/equal}}
+    {{#equal currentPage totalPages}}
+    <a href="/customer?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
+    {{else}}
+    <a href="/customer?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
+    {{/equal}}
 </div>
 <style>
-        .card {
-            position: relative;
-        }
+    .card {
+        position: relative;
+    }
 
-        .card .btn-bottom-right {
-            position: absolute;
-            bottom: 10px;
-            right: 10px; 
-        }
-    </style>
+    .card .btn-bottom-right {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+</style>

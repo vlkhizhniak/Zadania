@@ -3,20 +3,31 @@ const Action = require('../models/ActionModel');
 
 module.exports = {
     index: (req, res) => {
-        Customer.find()
-            .lean()
-            .then((customerlist) => {
-                res.render('home', { customerlist: customerlist })
-            })
-            .catch((err) => {
-                res.send(err)
-            })
+        const limit = 2;
+        const page = req.query.page;
+        const count = Customer.countDocuments().then((count) => {
+            Customer.find()
+                .limit(limit * 1)
+                .skip((page - 1) * limit)
+                .lean()
+                .then((customerlist) => {
+                    res.render('home', {
+                        customerlist: customerlist,
+                        totalPages: Math.ceil(count / limit),
+                        currentPage: Number(page),
+                        nextPage: Number(page) + 1,
+                        prevPage: Number(page) - 1
+                    })
+                })
+        });
+
+
     },
     add: (req, res) => {
         // console.log(req.body)
         const newcustomer = new Customer(req.body);
         newcustomer.save().then(() => {
-            res.redirect('/customer')
+            res.redirect('/customer?page=1')
         }).catch((err) => {
             if (err.name === 'ValidationError') {
                 for (const validationError of Object.values(err.errors)) {
@@ -45,20 +56,38 @@ module.exports = {
 
             await Customer.findByIdAndDelete(req.params.id);
 
-            res.redirect('/customer');
+            res.redirect('/customer?page=1');
         } catch (err) {
             res.send(err);
         }
     },
 
     single: (req, res) => {
-        Customer.findById(req.params.id).lean()
-            .then((onecustomer) => {
-                Action.find({ customers: onecustomer._id }).lean()
-                    .then((actionlist) => {
-                        res.render('customers/onecustomer', { onecustomer: onecustomer, actionlist: actionlist })
-                    })
-            });
+        const limit = 2;
+        const page = req.query.page;
+        const count = Customer.countDocuments().then((count) => {
+            Customer.findById(req.params.id).lean()
+                .then((onecustomer) => {
+                    const limit = 2;
+                    const page = req.query.page;
+                    const count = Action.countDocuments();
+                    Action.find({ customers: onecustomer._id })
+                        .limit(limit * 1)
+                        .skip((page - 1) * limit)
+                        .lean()
+                        .then((actionlist) => {
+                            res.render('customers/onecustomer', {
+                                onecustomer: onecustomer,
+                                actionlist: actionlist,
+                                totalPages: Math.ceil(count / limit),
+                                currentPage: page,
+                                nextPage: Number(page) + 1,
+                                prevPage: Number(page) - 1
+                            })
+                        })
+                });
+        })
+
     },
     edit: (req, res) => {
         Customer.findById(req.params.id)
@@ -70,10 +99,7 @@ module.exports = {
     update: (req, res) => {
         Customer.findByIdAndUpdate(req.params.id, req.body)
             .then((onecustomer) => {
-                res.redirect("/customer/" + onecustomer._id)
+                res.redirect("/customer/" + onecustomer._id + '?page=1')
             })
-            .catch((err) => {
-                res.send(err);
-            });
     }
 }
