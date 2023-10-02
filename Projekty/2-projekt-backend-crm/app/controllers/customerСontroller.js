@@ -3,7 +3,7 @@ const Action = require('../models/ActionModel');
 
 module.exports = {
     index: (req, res) => {
-        const limit = 2;
+        const limit = 10;
         const page = req.query.page;
         const count = Customer.countDocuments().then((count) => {
             Customer.find()
@@ -20,11 +20,8 @@ module.exports = {
                     })
                 })
         });
-
-
     },
     add: (req, res) => {
-        // console.log(req.body)
         const newcustomer = new Customer(req.body);
         newcustomer.save().then(() => {
             res.redirect('/customer?page=1')
@@ -61,16 +58,12 @@ module.exports = {
             res.send(err);
         }
     },
-
     single: (req, res) => {
-        const limit = 2;
+        const limit = 10;
         const page = req.query.page;
         const count = Customer.countDocuments().then((count) => {
             Customer.findById(req.params.id).lean()
                 .then((onecustomer) => {
-                    const limit = 2;
-                    const page = req.query.page;
-                    const count = Action.countDocuments();
                     Action.find({ customers: onecustomer._id })
                         .limit(limit * 1)
                         .skip((page - 1) * limit)
@@ -80,19 +73,17 @@ module.exports = {
                                 onecustomer: onecustomer,
                                 actionlist: actionlist,
                                 totalPages: Math.ceil(count / limit),
-                                currentPage: page,
+                                currentPage: Number(page),
                                 nextPage: Number(page) + 1,
                                 prevPage: Number(page) - 1
                             })
                         })
                 });
         })
-
     },
     edit: (req, res) => {
         Customer.findById(req.params.id)
             .then((onecustomer) => {
-                // console.log(onecustomer)
                 res.render('customers/editcustomer', onecustomer)
             })
     },

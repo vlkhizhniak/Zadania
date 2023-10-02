@@ -14,7 +14,6 @@ module.exports = {
     },
     add: (req, res) => {
         let invalid = false
-        // console.log({...req.body})
         req.body.customers = req.params.id
         const newAction = new Action(req.body);
         newAction.save().catch((err) => {

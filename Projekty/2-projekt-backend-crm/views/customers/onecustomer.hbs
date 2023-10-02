@@ -11,6 +11,7 @@
         <div class="btn-group" role="group" aria-label="Basic example">
             <a href="/action/{{onecustomer._id}}" class="btn btn-success">Dodaj akcje</a>
             <a href="/customer/edit/{{onecustomer._id}}" class="btn btn-primary">Edytuj</a>
+            <a href="/customer" class="btn btn-info">Wróć</a>
         </div>
 
     </div>
@@ -40,13 +41,10 @@
         {{/each}}
     </tbody>
 </table>
-{{#equal prevPage 0}}
-<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary disabled ms-2">Poprzednia strona</a>
-{{else}}
-<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary ms-2">Poprzednia strona</a>
-{{/equal}}
-{{#equal currentPage totalPages}}
-<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
-{{else}}
-<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
-{{/equal}}
+<a href="/customer/{{onecustomer._id}}?page={{prevPage}}"
+    class="btn btn-primary {{#equal prevPage 0}} disabled {{/equal}}">Poprzednia strona</a>
+{{#times totalPages}}
+<a href="/customer?page={{this}}">{{this}}</a>
+{{/times}}
+<a href="/customer/{{onecustomer._id}}?page={{nextPage}}"
+    class="btn btn-primary {{#equal currentPage totalPages}} disabled {{/equal}}">Następna strona</a>

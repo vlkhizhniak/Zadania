@@ -1,11 +1,11 @@
-<form class="ms-1 row g-3" method="post" action="/action/edit/{{_id}}">
+<form class="ms-1 row g-3" method="post" action="/action/edit/{{oneaction._id}}">
     <div class="col-md-6 mt-4">
         <label for="date">Wybierz datę wydarzenia</label>
-        <input type="date" class="form-control" id="date" name="date" value="{{date}}">
+        <input type="date" class="form-control" id="date" name="date" value="{{oneaction.date}}">
     </div>
     <div class="col-md-6 mt-5">
         <select class="form-select" aria-label="Default select example" name="kind">
-            <option value="{{kind}}" selected>{{kind}}</option>
+            <option value="{{kind}}" selected>{{oneaction.kind}}</option>
             <option value="Telefon">Telefon</option>
             <option value="Spotkanie">Spotkanie</option>
             <option value="Inne">Inne</option>
@@ -14,7 +14,7 @@
     <div class="col-12">
         <div class="form-floating">
             <textarea class="form-control" id="description" name="description"
-                style="height: 100px">{{description}}</textarea>
+                style="height: 100px">{{oneaction.description}}</textarea>
             <label for="floatingTextarea2">Opis wydarzenia</label>
         </div>
     </div>
@@ -22,5 +22,6 @@
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/customer" class="btn btn-info">Wróć</a>
     </div>
 </form>

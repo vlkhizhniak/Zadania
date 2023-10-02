@@ -12,16 +12,12 @@
         </div>
     </div>
     {{/each}}
-    {{#equal prevPage 0}}
-    <a href="/customer?page={{prevPage}}" class="btn btn-primary disabled">Poprzednia strona</a>
-    {{else}}
-    <a href="/customer?page={{prevPage}}" class="btn btn-primary">Poprzednia strona</a>
-    {{/equal}}
-    {{#equal currentPage totalPages}}
-    <a href="/customer?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
-    {{else}}
-    <a href="/customer?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
-    {{/equal}}
+    <a href="/customer?page={{prevPage}}" class="btn btn-primary {{#equal prevPage 0}} disabled {{/equal}}">Poprzednia strona</a>
+    {{#times totalPages}}
+        <a href="/customer?page={{this}}">{{this}}</a>
+    {{/times}}
+    <a href="/customer?page={{nextPage}}" class="btn btn-primary {{#equal currentPage totalPages}} disabled {{/equal}}">Następna strona</a>
+    
 </div>
 <style>
     .card {

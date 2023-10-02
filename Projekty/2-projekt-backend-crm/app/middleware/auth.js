@@ -4,7 +4,6 @@ const User = require("../models/UserModel");
 module.exports = (req, res, next) => {
     const token = req.cookies['AuthToken']
     if(token) {
-
         try {
             const verified = jwt.verify(token, "secretKey");
             User.findById(verified._id).then((user)=> {
@@ -15,12 +14,9 @@ module.exports = (req, res, next) => {
             .catch((err)=>{
                 res.send(err)
             })
-           
         } catch {
             res.redirect('/user/login')
-        }
-
-        
+        } 
     } else {
         res.redirect('/user/login')
     }

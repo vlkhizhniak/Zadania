@@ -50,7 +50,6 @@ module.exports = {
                     });
                     return;
                 }
-
                 bcrypt.compare(req.body.password, user.password, (err, logged) => {
                     if (err) {
                         res.render("users/login", {
@@ -59,7 +58,6 @@ module.exports = {
                         });
                         return;
                     }
-
                     if (logged) {
                         const token = user.generateAuthToken(user);
                         res.cookie("AuthToken", token);
