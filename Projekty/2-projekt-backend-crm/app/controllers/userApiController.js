@@ -20,11 +20,13 @@ module.exports = {
                     res.status(404).json({ error: true, message: "User does not exist" });
                     return;
                 }
+
                 bcrypt.compare(req.body.password, user.password, (err, logged) => {
                     if (err) {
                         res.status(500).json({ error: true, message: "Login error" });
                         return;
                     }
+
                     if (logged) {
                         const token = user.generateAuthToken(user);
                         res.cookie("AuthToken", token);
