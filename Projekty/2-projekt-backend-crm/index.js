@@ -11,8 +11,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/projekt-crm");
 
 app.use(express.urlencoded({ extended: true }));
 
-
-
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
@@ -64,6 +62,7 @@ app.use((req, res, next) => {
   const locale =
     req.cookies.lang || req.acceptsLanguages(supportedLocales) || "en";
   res.locals.currentLocale = locale;
+  res.cookie("lang", req.query.lang || "en");
   next();
 });
 
@@ -71,7 +70,7 @@ app.use((req, res, next) => {
 app.get("/changeLanguage/:lang", (req, res) => {
   const lang = req.params.lang;
   res.cookie("lang", lang);
-  res.redirect("back");
+  res.redirect(`back`);
 });
 
 const actionrouter = require("./app/router/actionRouter");

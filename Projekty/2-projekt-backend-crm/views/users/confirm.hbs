@@ -8,14 +8,14 @@
     {{/if}}
 
 
-    <form action="/user/login" method="POST">
+    <form action="/user/confirm" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">{{t 'userEmail' }}</label>
             <input type="email" class="form-control" id="email" name="email">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">User password</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <label for="code" class="form-label">User code</label>
+            <input type="text" class="form-control" id="code" name="code">
         </div>
         <button class="btn btn-primary">Login</button>
     </form>

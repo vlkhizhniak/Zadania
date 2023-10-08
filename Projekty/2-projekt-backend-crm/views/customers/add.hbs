@@ -1,6 +1,6 @@
 <form class="ms-1 row g-3" method="post" action="/customer/add">
   <div class="col-md-6">
-    <label for="name" class="form-label">{{t 'name'}}*</label>
+    <label for="name" class="form-label">Nazwa*</label>
     <input type="text" class="form-control" id="name" name="name">
   </div>
   <div class="col-md-6">
@@ -8,41 +8,43 @@
     <input type="text" class="form-control" id="nip" name="nip">
     {{#if nipError}}
     <div class="text-danger">
-      {{t 'nipValid'}}
+      Please enter a valid NIP
     </div>
     {{/if}}
   </div>
   <div class="col-12">
-    <label for="street" class="form-label">{{t 'street'}}*</label>
+    <label for="street" class="form-label">Ulica*</label>
     <input type="text" class="form-control" id="street" name="address.street">
   </div>
   <div class="col-12">
-    <label for="country" class="form-label">{{t 'country'}}*</label>
+    <label for="country" class="form-label">Państwo*</label>
     <input type="text" class="form-control" id="country" name="address.country">
   </div>
   <div class="col-md-6">
-    <label for="city" class="form-label">{{t 'city'}}*</label>
+    <label for="city" class="form-label">Miasto*</label>
     <input type="text" class="form-control" id="city" name="address.city">
   </div>
   <div class="col-md-4">
-    <label for="region" class="form-label">{{t 'region'}}*</label>
+    <label for="region" class="form-label">Województwo*</label>
     <input type="text" class="form-control" id="region" name="address.region">
   </div>
   <div class="col-md-2">
-    <label for="zip" class="form-label">{{t 'zipCode'}}*</label>
+    <label for="zip" class="form-label">Kod pocztowy*</label>
     <input type="text" class="form-control" id="zip" name="address.zip">
     {{#if zipError}}
     <div class="text-danger">
-      {{t 'zipValid'}}
+      Please enter a valid zipcode
     </div>
     {{/if}}
   </div>
   <div class="col-12">
-
-    <p class="{{#if requiredError}} text-danger fw-medium {{else}} text-secondary-emphasis {{/if}}">{{t
-      'fieldRequired'}}*</p>
+    {{#if requiredError}}
+    <p class="text-danger fw-medium">Pola z gwazdką są obowiązkowe*</p>
+    {{else}}
+    <p class="text-secondary-emphasis">Pola z gwazdką są obowiązkowe*</p>
+    {{/if}}
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
