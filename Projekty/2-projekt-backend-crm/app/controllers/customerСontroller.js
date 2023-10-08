@@ -22,7 +22,6 @@ module.exports = {
         });
     },
     add: (req, res) => {
-        // console.log(req.body)
         const newcustomer = new Customer(req.body);
         newcustomer
             .save()
@@ -91,7 +90,6 @@ module.exports = {
     },
     edit: (req, res) => {
         Customer.findById(req.params.id).then((onecustomer) => {
-            // console.log(onecustomer)
             res.render("customers/editcustomer", onecustomer);
         });
     },

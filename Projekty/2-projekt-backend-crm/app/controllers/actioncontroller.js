@@ -1,4 +1,4 @@
-const Customer = require('../models/customermodel');
+const Customer = require('../models/CustomerModel');
 const Action = require('../models/ActionModel');
 
 module.exports = {
@@ -9,7 +9,6 @@ module.exports = {
             })
     },
     add: (req, res) => {
-        // console.log({...req.body})
         req.body.id = req.params.id
         const newAction = new Action(req.body);
         newAction.save();

@@ -31,7 +31,6 @@ module.exports = {
                                 return;
                             }
                             else{
-                                console.log(err);
                                 return;
                             }
                         }
@@ -41,7 +40,6 @@ module.exports = {
     login: (req, res) => {
         User.findOne({ email: req.body.email })
             .then((user) => {
-                // console.log(user)
                 if (!user) {
                     res.render("users/login", {
                         error: true,

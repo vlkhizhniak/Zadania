@@ -1,3 +1,5 @@
+require('dotenv').config({ path: __dirname + '/.env' })
+
 const express = require("express");
 const app = express();
 const hbs = require("express-handlebars");
@@ -7,9 +9,8 @@ const bodyParser = require("body-parser");
 const i18n = require("i18n");
 const path = require("path");
 	
-require("dotenv").config();
 
-mongoose.connect("mongodb://127.0.0.1:27017/projekt-crm");
+mongoose.connect(process.env.DATABASE);
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 i18n.configure({
-  locales: ["en", "pl"], // Dostępne języki
+  locales: ["en", "pl"], 
   defaultLocale: "en",
   cookie: "lang",
   directory: path.join(__dirname, "locales"),
@@ -41,7 +42,6 @@ app.engine(
     helpers: {
       equal: function (value, compareValue, options) {
         if (value === compareValue) {
-          console.log(this);
           return options.fn(this);
         } else {
           return options.inverse(this);
@@ -96,5 +96,5 @@ app.use("/api/action", authmiddlewareapi, actionapirouter);
 app.use("/api/user", userapirouter);
 
 app.listen(process.env.PORT, function () {
-  console.log("Node.js server is active");
+  console.log("Node.js server is active " + process.env.PORT);
 });
