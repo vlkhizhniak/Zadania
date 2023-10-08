@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     if(token) {
 
         try {
-            const verified = jwt.verify(token, "secretKey");
+            const verified = jwt.verify(token, process.env.TOKEN_KEY);
             User.findById(verified._id).then((user)=> {
                 res.locals.userId = user._id;
                 res.locals.userName = user.name;

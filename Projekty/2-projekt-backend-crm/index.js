@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const i18n = require("i18n");
 const path = require("path");
+	
+require("dotenv").config();
 
 mongoose.connect("mongodb://127.0.0.1:27017/projekt-crm");
 
@@ -93,6 +95,6 @@ app.use("/api/customer", authmiddlewareapi, customerapirouter);
 app.use("/api/action", authmiddlewareapi, actionapirouter);
 app.use("/api/user", userapirouter);
 
-app.listen(8080, function () {
+app.listen(process.env.PORT, function () {
   console.log("Node.js server is active");
 });
