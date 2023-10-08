@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>SignUp</h2>
+    <h2>{{t 'userSignup'}}</h2>
 
     {{#if error}}
     <div class="alert alert-danger" role="alert">
@@ -10,24 +10,24 @@
 
     <form action="/user/signup" method="POST">
         <div class="mb-3">
-            <label for="email" class="form-label">User email</label>
+            <label for="email" class="form-label">{{t 'userEmail' }}</label>
             <input type="email" class="form-control" id="email" name="email">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">User password</label>
+            <label for="password" class="form-label">{{t 'userPassword' }}</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
         {{#if passwordError}}
         <div class="fw-medium text-danger">
-            Passwords must be at least 10 characters in length and contain:
+            {{t 'passRequire'}}
             <ul>
-                <li class="text-danger">1 lower case letter</li>
-                <li class="text-danger">1 upper case letter</li>
-                <li class="text-danger">1 numeric character</li>
-                <li class="text-danger">1 special character</li>
+                <li class="text-danger">{{t 'lowerLetter'}}</li>
+                <li class="text-danger">{{t 'upperLetter'}}</li>
+                <li class="text-danger">{{t 'number'}}</li>
+                <li class="text-danger">{{t 'special'}}</li>
             </ul>
         </div>
         {{/if}}
-        <button class="btn btn-primary">Signup</button>
+        <button class="btn btn-primary">{{t 'userSignup'}}</button>
     </form>
 </div>

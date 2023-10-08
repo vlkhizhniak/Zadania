@@ -1,6 +1,6 @@
 <form class="ms-1 row g-3" method="post" action="/customer/edit/{{_id}}">
   <div class="col-md-6">
-    <label for="name" class="form-label">Nazwa*</label>
+    <label for="name" class="form-label">{{t 'name'}}*</label>
     <input type="text" class="form-control" id="name" name="name" value="{{name}}">
   </div>
   <div class="col-md-6">
@@ -8,29 +8,29 @@
     <input type="text" class="form-control" id="nip" name="nip" value="{{nip}}">
   </div>
   <div class="col-12">
-    <label for="street" class="form-label">Ulica*</label>
+    <label for="street" class="form-label">{{t 'street'}}*</label>
     <input type="text" class="form-control" id="street" name="address.street" value="{{address.street}}">
   </div>
   <div class="col-12">
-    <label for="country" class="form-label">Państwo*</label>
+    <label for="country" class="form-label">{{t 'country'}}*</label>
     <input type="text" class="form-control" id="country" name="address.country" value="{{address.country}}">
   </div>
   <div class="col-md-6">
-    <label for="city" class="form-label">Miasto*</label>
+    <label for="city" class="form-label">{{t 'city'}}*</label>
     <input type="text" class="form-control" id="city" name="address.city" value="{{address.city}}">
   </div>
   <div class="col-md-4">
-    <label for="region" class="form-label">Województwo*</label>
+    <label for="region" class="form-label">{{t 'region'}}*</label>
     <input type="text" class="form-control" id="region" name="address.region" value="{{address.region}}">
   </div>
   <div class="col-md-2">
-    <label for="zip" class="form-label">Kod pocztowy*</label>
+    <label for="zip" class="form-label">{{t 'zipCode'}}*</label>
     <input type="text" class="form-control" id="zip" name="address.zip" value="{{address.zip}}">
   </div>
   <div class="col-12">
-        <p class="text-secondary-emphasis">Pola z gwazdką są obowiązkowe*</p>
+        <p class="text-secondary-emphasis">{{t 'fieldRequired'}}*</p>
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
   </div>
 </form>
