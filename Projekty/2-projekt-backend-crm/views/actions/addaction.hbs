@@ -1,33 +1,33 @@
-<p class="lead ms-3 fw-bold">{{t 'client'}}: {{onecustomer.name}}</p>
+<p class="lead ms-3 fw-bold">Klient: {{onecustomer.name}}</p>
 <p class="lead ms-3 fw-bold">NIP: {{onecustomer.nip}}</p>
 
 {{#if validError}}
 <div class="alert alert-danger">
-    {{t 'allFields'}}
+    All fields are required
 </div>
 {{/if}}
 <form class="ms-1 row g-3" method="post" action="/action/add/{{onecustomer._id}}">
     <div class="col-md-6 mt-4">
-        <label for="date">{{t 'actionDate'}}</label>
+        <label for="date">Wybierz datę wydarzenia</label>
         <input type="date" class="form-control" id="date" name="date">
     </div>
     <div class="col-md-6 mt-5">
         <select class="form-select" aria-label="Default select example" name="kind">
-            <option selected value="">{{t "actionType"}}</option>
-            <option>{{t 'phone'}}</option>
-            <option>{{t 'meeting'}}</option>
-            <option>{{t 'another'}}</option>
+            <option selected>Wybiez rodzaj wydarzenia</option>
+            <option value="Telefon">Telefon</option>
+            <option value="Spotkanie">Spotkanie</option>
+            <option value="Inne">Inne</option>
         </select>
     </div>
     <div class="col-12">
         <div class="form-floating">
             <textarea class="form-control" id="description" name="description" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">{{t 'description'}}</label>
+            <label for="floatingTextarea2">Opis wydarzenia</label>
         </div>
     </div>
     <div class="col-12">
     </div>
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>

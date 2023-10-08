@@ -1,6 +1,6 @@
 <div class="container">
-    <h2>{{t 'customerList'}}</h2>
-    <a href="/customer/add" class="btn btn-success mb-3">{{t 'customerAdd'}}</a>
+    <h2>{{t 'customersList'}}</h2>
+    <a href="/customer/add" class="btn btn-success mb-3">Dodaj Klienta</a>
 
     {{#each customerlist}}
     <div class="card mb-3">
@@ -13,12 +13,16 @@
     </div>
     {{/each}}
 
-    <a href="/customer?page={{prevPage}}" class="btn btn-primary {{#equal prevPage 0}}disabled{{/equal}}">{{t 'prevPage'}}</a>
+    <a href="/customer?page={{prevPage}}" class="btn btn-primary {{#equal prevPage 0}}disabled{{/equal}}">Poprzednia strona</a>
     
     {{#times totalPages}}
     <a href="/customer?page={{this}}">{{this}}</a>
     {{/times}}
-     <a href="/customer?page={{nextPage}}" class="btn btn-primary {{#equal nextPage 0}}disabled{{/equal}}">{{t 'nextPage'}}</a>
+    {{#equal currentPage totalPages}}
+    <a href="/customer?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
+    {{else}}
+    <a href="/customer?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
+    {{/equal}}
 </div>
 <style>
     .card {

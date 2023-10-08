@@ -3,14 +3,14 @@
     <div class="card-body">
         <h5 class="card-title">NIP: {{onecustomer.nip}}</h5>
         <h5 class="card-title">Dane adresowe</h5>
-        <p class="card-text">{{t 'street'}}: {{onecustomer.address.street}}</p>
-        <p class="card-text">{{t 'city'}}: {{onecustomer.address.city}}</p>
-        <p class="card-text">{{t 'country'}}: {{onecustomer.address.country}}</p>
-        <p class="card-text">{{t 'region'}}: {{onecustomer.address.region}}</p>
-        <p class="card-text">{{t 'zipCode'}}: {{onecustomer.address.zip}}</p>
+        <p class="card-text">Ulica: {{onecustomer.address.street}}</p>
+        <p class="card-text">Miasto: {{onecustomer.address.city}}</p>
+        <p class="card-text">Państwo: {{onecustomer.address.country}}</p>
+        <p class="card-text">Województwo: {{onecustomer.address.region}}</p>
+        <p class="card-text">Kod pocztowy: {{onecustomer.address.zip}}</p>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/action/{{onecustomer._id}}" class="btn btn-success">{{t 'actionAdd'}}</a>
-            <a href="/customer/edit/{{onecustomer._id}}" class="btn btn-primary">{{t 'edit'}}</a>
+            <a href="/action/{{onecustomer._id}}" class="btn btn-success">Dodaj akcje</a>
+            <a href="/customer/edit/{{onecustomer._id}}" class="btn btn-primary">Edytuj</a>
         </div>
 
     </div>
@@ -18,10 +18,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">{{t 'contactDate'}}</th>
-            <th scope="col">{{t 'typeAction'}}</th>
-            <th scope="col">{{t 'description'}}</th>
-            <th scope="col">{{t 'delete/edit'}}</th>
+            <th scope="col">Data Kontaktu</th>
+            <th scope="col">Rodzaj akcji</th>
+            <th scope="col">Opis akcji</th>
+            <th scope="col">Usuń/Edytuj</th>
         </tr>
     </thead>
     <tbody>
@@ -40,6 +40,13 @@
         {{/each}}
     </tbody>
 </table>
-<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary {{#equal nextPage 0}}disabled{{/equal}}">{{t 'prevPage'}}</a>
-
-<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary {{#equal nextPage 0}}disabled{{/equal}}">{{t 'nextPage'}}</a>
+{{#equal prevPage 0}}
+<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary disabled ms-2">Poprzednia strona</a>
+{{else}}
+<a href="/customer/{{onecustomer._id}}?page={{prevPage}}" class="btn btn-primary ms-2">Poprzednia strona</a>
+{{/equal}}
+{{#equal currentPage totalPages}}
+<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary disabled">Następna strona</a>
+{{else}}
+<a href="/customer/{{onecustomer._id}}?page={{nextPage}}" class="btn btn-primary">Następna strona</a>
+{{/equal}}
