@@ -1,9 +1,9 @@
-const Customer = require('../models/CustomerModel')
-const Action = require('../models/ActionModel');
+const Customer = require("../models/CustomerModel");
+const Action = require("../models/ActionModel");
 
 module.exports = {
     index: (req, res) => {
-        const limit = 10;
+        const limit = 2;
         const page = req.query.page;
         const count = Customer.countDocuments().then((count) => {
             Customer.find()
@@ -11,37 +11,40 @@ module.exports = {
                 .skip((page - 1) * limit)
                 .lean()
                 .then((customerlist) => {
-                    res.render('home', {
+                    res.render("home", {
                         customerlist: customerlist,
                         totalPages: Math.ceil(count / limit),
                         currentPage: Number(page),
                         nextPage: Number(page) + 1,
-                        prevPage: Number(page) - 1
-                    })
-                })
+                        prevPage: Number(page) - 1,
+                    });
+                });
         });
     },
     add: (req, res) => {
+        // console.log(req.body)
         const newcustomer = new Customer(req.body);
-        newcustomer.save().then(() => {
-            res.redirect('/customer?page=1')
-        }).catch((err) => {
-            if (err.name === 'ValidationError') {
-                for (const validationError of Object.values(err.errors)) {
-                    if (validationError.path === 'address.zip') {
-                        res.render('customers/add', { zipError: true });
-                        return;
-                    } else if (validationError.path === 'nip') {
-                        res.render('customers/add', { nipError: true });
-                        return;
-                    }
-                    else {
-                        res.render('customers/add', { requiredError: true });
-                        return;
+        newcustomer
+            .save()
+            .then(() => {
+                res.redirect("/customer?page=1");
+            })
+            .catch((err) => {
+                if (err.name === "ValidationError") {
+                    for (const validationError of Object.values(err.errors)) {
+                        if (validationError.path === "address.zip") {
+                            res.render("customers/add", { zipError: true });
+                            return;
+                        } else if (validationError.path === "nip") {
+                            res.render("customers/add", { nipError: true });
+                            return;
+                        } else {
+                            res.render("customers/add", { requiredError: true });
+                            return;
+                        }
                     }
                 }
-            }
-        })
+            });
     },
     delete: async (req, res) => {
         try {
@@ -53,44 +56,48 @@ module.exports = {
 
             await Customer.findByIdAndDelete(req.params.id);
 
-            res.redirect('/customer?page=1');
+            res.redirect("/customer?page=1");
         } catch (err) {
             res.send(err);
         }
     },
+
     single: (req, res) => {
-        const limit = 10;
+        const limit = 2;
         const page = req.query.page;
         const count = Customer.countDocuments().then((count) => {
-            Customer.findById(req.params.id).lean()
+            Customer.findById(req.params.id)
+                .lean()
                 .then((onecustomer) => {
+                    const limit = 2;
+                    const page = req.query.page;
+                    const count = Action.countDocuments();
                     Action.find({ customers: onecustomer._id })
                         .limit(limit * 1)
                         .skip((page - 1) * limit)
                         .lean()
                         .then((actionlist) => {
-                            res.render('customers/onecustomer', {
+                            res.render("customers/onecustomer", {
                                 onecustomer: onecustomer,
                                 actionlist: actionlist,
                                 totalPages: Math.ceil(count / limit),
-                                currentPage: Number(page),
+                                currentPage: page,
                                 nextPage: Number(page) + 1,
-                                prevPage: Number(page) - 1
-                            })
-                        })
+                                prevPage: Number(page) - 1,
+                            });
+                        });
                 });
-        })
+        });
     },
     edit: (req, res) => {
-        Customer.findById(req.params.id)
-            .then((onecustomer) => {
-                res.render('customers/editcustomer', onecustomer)
-            })
+        Customer.findById(req.params.id).then((onecustomer) => {
+            // console.log(onecustomer)
+            res.render("customers/editcustomer", onecustomer);
+        });
     },
     update: (req, res) => {
-        Customer.findByIdAndUpdate(req.params.id, req.body)
-            .then((onecustomer) => {
-                res.redirect("/customer/" + onecustomer._id + '?page=1')
-            })
-    }
-}
+        Customer.findByIdAndUpdate(req.params.id, req.body).then((onecustomer) => {
+            res.redirect("/customer/" + onecustomer._id + "?page=1");
+        });
+    },
+};
